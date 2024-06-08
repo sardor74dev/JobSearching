@@ -72,18 +72,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     const isAuthenticated = !!localStorage.getItem('authToken')
-
-    // if (to.meta.requiresAuth && !isAuthenticated){
-    //     return {
-    //         path: '/login',
-    //         query: { redirect: to.fullPath }
-    //     }
-    // } else {
-    //     next()
-    // }
-
     if(to.matched.some(record => record.meta.requiresAuth) && !isAuthenticated){
-        console.log('Redirecting to Register with redirect:', to.fullPath)
         next({ 
             name: 'Login',
             query: { redirect: to.fullPath }
@@ -91,13 +80,15 @@ router.beforeEach((to, from, next) => {
     } else {
         next()
     } 
+})
 
-    // if(to.meta.title){
-    //     document.title = to.meta.title
-    // } else {
-    //     document.title = 'Палитра вакансий'
-    // }
-    // next()
+router.beforeEach((to, from, next) => {
+    if(to.meta.title){
+        document.title = to.meta.title
+    } else {
+        document.title = 'Палитра вакансий'
+    }
+    next()
 })
 
 const pinia = createPinia()

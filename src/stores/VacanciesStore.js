@@ -14,11 +14,11 @@ export const useVacanciesStore = defineStore("VacanciesStore", () => {
         }
     }
 
-    const postVacancies = async(title, company, city, jobType, schedule, experience, payment) => {
+    const postVacancies = async(title, company, location, jobType, schedule, experience, payment) => {
         const job = {
             title: title,
             company: company,
-            city: city,
+            location: location,
             job_type: jobType,
             schedule: schedule,
             experience: experience,

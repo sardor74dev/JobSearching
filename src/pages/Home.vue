@@ -14,7 +14,7 @@ const RegistrationStore = useRegistrationStore()
             <h3 class="mb-[60px] mt-5 md:my-[26px] xl:my-[46px] text-lg md:text-2xl text-center md:text-left font-montserrat font-semibold">Не трать своё время <p class="inline text-[#FF2B2B]">попусту</p>. Начни зарабатывать</h3>
             <div class="flex flex-col gap-5 lg:gap-0 lg:flex-row items-center justify-between">
                 <Button path="/vacancies" msg="Посмотреть вакансии" />
-                <Button @click="RegistrationStore.showToken" path="/vacancies" msg="Опубликовать вакансию" />
+                <Button path="/job-posting" msg="Опубликовать вакансию" />
                 <button @click="RegistrationStore.logOut">Лог аут</button>
             </div>
         </div>
