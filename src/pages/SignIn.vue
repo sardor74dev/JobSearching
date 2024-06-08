@@ -5,13 +5,13 @@ import { useRegistrationStore } from '../stores/RegistrationStore'
 
 const registrationStore = useRegistrationStore()
 
-const handleSubmitSignIn = () => {
-    const signedUser = ref({
-        email: registrationStore.email,
-        password: registrationStore.password
-    })
-    registrationStore.auth(signedUser)
-}
+// const handleSubmitSignIn = () => {
+//     const signedUser = ref({
+//         email: registrationStore.email,
+//         password: registrationStore.password
+//     })
+//     registrationStore.auth(signedUser)
+// }
 
 </script>
 
@@ -23,7 +23,7 @@ const handleSubmitSignIn = () => {
         </div>
 
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form @submit.prevent="handleSubmitSignIn" class="space-y-6" action="#" method="POST">
+            <form @submit.prevent="registrationStore.auth()" class="space-y-6">
                 <div>
                     <label for="email" class="block text-sm font-medium leading-6 text-white">Адрес электронной почты</label>
                     <div class="mt-2">

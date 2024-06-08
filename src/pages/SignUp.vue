@@ -24,7 +24,7 @@ const handleSubmit = () => {
         </div>
 
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form @submit.prevent="handleSubmit" class="space-y-6" action="#" method="POST">
+            <form @submit.prevent="handleSubmit" class="space-y-6">
                 <div>
                     <label for="name" class="block text-sm font-medium leading-6 text-white">Имя</label>
                     <div class="mt-2">
