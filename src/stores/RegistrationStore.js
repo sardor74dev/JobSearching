@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import axios from "axios";
 import { useRouter, useRoute } from "vue-router";
 
@@ -10,6 +10,8 @@ export const useRegistrationStore = defineStore("registrationStore", () => {
     const username = ref('')
     const email = ref('')
     const password = ref('')
+
+    const errorMessage = ref('')
 
     const register = async() => {
         try {
@@ -52,9 +54,14 @@ export const useRegistrationStore = defineStore("registrationStore", () => {
             router.push(redirectTo);
         } catch (err) {
             console.log(err)
+            if (err.response && err.response.status === 401) {
+                errorMessage.value = 'Invalid email or password.';
+            } else {
+                errorMessage.value = 'An error occurred. Please try again later.';
+            }
         }
     }
-    
+
     const logOut = async() => {
         localStorage.removeItem('authToken')
         console.log(localStorage.getItem('authToken'))
@@ -83,6 +90,7 @@ export const useRegistrationStore = defineStore("registrationStore", () => {
         password,
         register,
         auth,
-        logOut
+        logOut,
+        errorMessage
     }
 })

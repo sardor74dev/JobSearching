@@ -1,5 +1,8 @@
 <script setup>
 import { ref } from "vue"
+import { useRegistrationStore } from '../stores/RegistrationStore'
+
+const registrationStore = useRegistrationStore()
 
 defineProps({
   menuItems: {
@@ -8,10 +11,10 @@ defineProps({
   }
 })
 
-const isOpen = ref(false)
+const isMenuOpen = ref(false)
 
 const toggleMenu = () => {
-  isOpen.value = !isOpen.value
+  isMenuOpen.value = !isMenuOpen.value
 }
 
 </script>
@@ -28,21 +31,34 @@ const toggleMenu = () => {
       </div>
     </router-link>
     <div>
-      <button @click="toggleMenu" class="lg:hidden focus:outline-none">
-        <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path v-if="!isOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-          <path v-if="isOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      <button @click="toggleMenu" class="lg:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
       </button>
-      <div :class="{'block': isOpen, 'hidden': !isOpen}" class="lg:flex lg:items-center lg:justify-between">
-        <ul class="flex flex-col md:flex-row md:space-x-4">
+      <nav :class="isMenuOpen ? 'block' : 'hidden'" class="fixed inset-0 bg-black bg-opacity-90 z-50 lg:static lg:bg-transparent lg:flex lg:items-center lg:space-x-4">
+        <button @click="toggleMenu" class="lg:hidden mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+        <ul class="flex flex-col gap-10 justify-center items-center lg:flex-row lg:h-auto lg:space-x-4">
           <li v-for="item in menuItems"
             :key="item"
-            class="flex justify-center items-center bg-black w-40 h-10 md:w-[165px] md:h-[27px] shadow-sharp hover:shadow-sharp-hover transition-shadow duration-300">
-            <p class="font-montserrat font-semibold text-sm md:text-xl">{{ item }}</p>
+            class="flex flex-col lg:flex-row justify-center lg:items-center bg-transparent lg:bg-black w-40 h-full lg:h-10 md:w-[165px] md:h-[27px] lg:shadow-sharp lg:hover:shadow-sharp-hover lg:transition-shadow duration-300">
+            <p class="text-center font-montserrat font-semibold text-sm md:text-xl">{{ item }}</p>
           </li>
+          <router-link to="/login">
+            <li class="flex items-end">
+              <font-awesome-icon 
+                icon="fa-solid fa-user" 
+                style="color: #ffffff;"
+                size="xl"
+              /> 
+            </li>
+          </router-link>
         </ul>
-      </div>
+      </nav>
     </div>
   </div>
 </template>

@@ -15,7 +15,6 @@ const RegistrationStore = useRegistrationStore()
             <div class="flex flex-col gap-5 lg:gap-0 lg:flex-row items-center justify-between">
                 <Button path="/vacancies" msg="Посмотреть вакансии" />
                 <Button path="/job-posting" msg="Опубликовать вакансию" />
-                <button @click="RegistrationStore.logOut">Лог аут</button>
             </div>
         </div>
         

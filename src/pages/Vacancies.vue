@@ -29,18 +29,20 @@ onMounted(async() => {
                     :key="vacancy"
                     class="px-4 py-2 cursor-pointer hover:bg-[#FFE70C] hover:text-black"
                 >
-                {{ vacancy.title }}
+                    <router-link :to="`/vacancy-details/${vacancy.title}`">
+                        {{ vacancy.title }}
+                    </router-link>
                 </li>
             </ul>
         </transition>
         <button 
             @click="vacanciesStore.getSearchedVacancies"
-            class="text-center w-[50vw] lg:w-[250px] h-12 md:h-[60px] h-[46px] p-2 bg-black shadow-yellow-sharp hover:shadow-yellow-sharp-hover transition-shadow duration-300">
+            class="text-center w-[50vw] lg:w-[250px] h-12 md:h-[60px] h-[46px] p-2 bg-black shadow-search-button hover:shadow-search-button-hover transition-shadow duration-300">
             <p class="font-montserrat font-semibold text-base md:text-xl">Поиск</p>
         </button>
     </div>
-    <div class="flex flex-col md:flex-row justify-between">
-        <Sidebar class="flex flex-col-reverse md:flex-row md:w-1/4 mr-20 mb-4"/>
+    <div class="flex flex-col lg:flex-row justify-between">
+        <Sidebar class="flex flex-col-reverse lg:flex-row lg:w-1/4 mr-20 mb-4"/>
         <div class="flex flex-col w-full gap-6 md:gap-8 lg:gap-11 xl:gap-16 space-y-8 md:space-y-0">
             <ListOfVacancies />
         </div>

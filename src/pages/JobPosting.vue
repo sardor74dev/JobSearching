@@ -11,6 +11,7 @@ const jobType = ref('')
 const schedule = ref('')
 const experience = ref('')
 const payment = ref('')
+const details = ref('')
 </script>
 
 <template>
@@ -53,11 +54,11 @@ const payment = ref('')
                                 <label for="type" class="block text-sm font-medium leading-6 text-white">Тип занятости</label>
                                 <div class="mt-2">
                                     <select id="type" name="type" autocomplete="type" class="w-full h-12 md:h-[60px] bg-transparent border-4 border-solid border-[#FFE70C] focus:bg-black transition duration-500 focus:border-black transition duration-500 px-6 text-[#BABABA] text-base font-montserrat outline-none">
-                                        <option value="Full-time">Полная занятость</option>
-                                        <option value="Part-time">Частичная занятость</option>
-                                        <option value="Contract">Проектная работа</option>
-                                        <option value="Part-time">Стажировка</option>
-                                        <option value="Contract">Волонтерство</option>
+                                        <option value="Полная занятость">Полная занятость</option>
+                                        <option value="Частичная занятость">Частичная занятость</option>
+                                        <option value="Проектная работа">Проектная работа</option>
+                                        <option value="Стажировка">Стажировка</option>
+                                        <option value="Волонтерство">Волонтерство</option>
                                     </select>
                                 </div>
                             </div>
@@ -65,11 +66,11 @@ const payment = ref('')
                                 <label for="schedule" class="block text-sm font-medium leading-6 text-white">График работы</label>
                                 <div class="mt-2">
                                     <select id="schedule" name="schedule" autocomplete="schedule" class="w-full h-12 md:h-[60px] bg-transparent border-4 border-solid border-[#FFE70C] focus:bg-black transition duration-500 focus:border-black transition duration-500 px-6 text-[#BABABA] text-base font-montserrat outline-none">
-                                        <option value="Full-time">Полный день</option>
-                                        <option value="Part-time">Удаленная работа</option>
-                                        <option value="Contract">Гибкий график</option>
-                                        <option value="Part-time">Сменный график</option>
-                                        <option value="Contract">Вахтовый метод</option>
+                                        <option value="Полный день">Полный день</option>
+                                        <option value="Удаленная работа">Удаленная работа</option>
+                                        <option value="Гибкий график">Гибкий график</option>
+                                        <option value="Сменный график">Сменный график</option>
+                                        <option value="Вахтовый метод">Вахтовый метод</option>
                                     </select>
                                 </div>
                             </div>
@@ -77,10 +78,10 @@ const payment = ref('')
                                 <label for="experience" class="block text-sm font-medium leading-6 text-white">Опыт работы</label>
                                 <div class="mt-2">
                                     <select id="experience" name="experience" autocomplete="experience" class="w-full h-12 md:h-[60px] bg-transparent border-4 border-solid border-[#FFE70C] focus:bg-black transition duration-500 focus:border-black transition duration-500 px-6 text-[#BABABA] text-base font-montserrat outline-none">
-                                        <option value="Full-time">Опыт 1-3 года</option>
-                                        <option value="Part-time">Опыт 3-6 лет</option>
-                                        <option value="Contract">Без опыта</option>
-                                        <option value="Contract">Более 6 лет</option>
+                                        <option value="Опыт 1-3 года">Опыт 1-3 года</option>
+                                        <option value="Опыт 3-6 лет">Опыт 3-6 лет</option>
+                                        <option value="Без опыта">Без опыта</option>
+                                        <option value="Более 6 лет">Более 6 лет</option>
                                     </select>
                                 </div>
                             </div>
@@ -89,14 +90,14 @@ const payment = ref('')
                         <div class="col-span-10">
                             <label for="about" class="block text-sm font-medium leading-6 text-white">Детали</label>
                             <div class="mt-2">
-                                <textarea id="about" name="about" rows="3" class="w-full h-12 bg-transparent border-4 border-solid border-[#FFE70C] focus:bg-black transition duration-500 focus:border-black transition duration-500 px-6 py-2 text-[#BABABA] text-base font-montserrat outline-none"></textarea>
+                                <textarea id="about" name="about" v-model="details" rows="3" class="w-full h-12 bg-transparent border-4 border-solid border-[#FFE70C] focus:bg-black transition duration-500 focus:border-black transition duration-500 px-6 py-2 text-[#BABABA] text-base font-montserrat outline-none"></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="mt-6 flex items-center justify-end gap-x-6">
-                <button type="submit" @click="vacanciesStore.postVacancies(title, company, location, jobType, schedule, experience, payment)" class="text-center w-[50vw] lg:w-[250px] h-12 md:h-[60px] h-[46px] p-2 bg-black shadow-yellow-sharp hover:shadow-yellow-sharp-hover transition-shadow duration-300">
+                <button type="submit" @click="vacanciesStore.postVacancies(title, company, location, jobType, schedule, experience, payment, details)" class="text-center w-[50vw] lg:w-[250px] h-12 md:h-[60px] h-[46px] p-2 bg-black shadow-yellow-sharp hover:shadow-yellow-sharp-hover transition-shadow duration-300">
                     <p class="font-montserrat font-semibold text-base md:text-xl">Post</p>
                 </button>
             </div>

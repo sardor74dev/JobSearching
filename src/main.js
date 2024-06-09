@@ -12,9 +12,10 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 /* import specific icons */
 import { faHeart as fasFaHeart } from '@fortawesome/free-solid-svg-icons'
 import { faHeart as farFaHeart } from '@fortawesome/free-regular-svg-icons'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
 
 /* add icons to the library */
-library.add(fasFaHeart, farFaHeart)
+library.add(fasFaHeart, farFaHeart, faUser)
 
 const routes = [
     {
@@ -32,7 +33,7 @@ const routes = [
         meta: { requiresAuth: true }
     },
     {
-        path: '/vacancy-details',
+        path: '/vacancy-details/:id',
         name: 'Vacancy Details',
         component: () => import('./pages/VacancyDetails.vue'),
         meta: {

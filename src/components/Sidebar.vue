@@ -16,16 +16,14 @@ const toggleSidebar = () => {
 </script>
 
 <template>
-    <div :class="['sticky-sidebar', 'md:h-screen']">
-        <!-- Burger button -->
-        <button @click="toggleSidebar" class="md:hidden p-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+    <div :class="['sticky-sidebar', 'lg:h-screen']">
+        <button @click="toggleSidebar" class="lg:hidden p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
             </svg>
         </button>
 
-        <!-- Sidebar -->
-        <div :class="['fixed inset-0 z-40 transition-transform transform md:relative md:translate-x-0 md:block w-full bg-black md:bg-transparent p-4 border-r border-gray-300', isOpen ? 'translate-x-0' : '-translate-x-full']">
+        <div :class="['fixed inset-0 z-40 transition-transform transform lg:relative lg:translate-x-0 lg:block w-full bg-black lg:bg-transparent p-4 border-r border-gray-300', isOpen ? 'translate-x-0' : '-translate-x-full']">
             <button @click="toggleSidebar" class="md:hidden mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
@@ -38,9 +36,9 @@ const toggleSidebar = () => {
                     <label
                         v-for="job in jobType"
                         :key="job"
-                        :class="['inline-block cursor-pointer rounded-full px-4 py-2 m-1', vacanciesStore.selectedJobTypes.includes(job) ? 'bg-[#FFE70C] border-solid border-2 border-black text-black' : 'bg-white hover:bg-gray-200 border-solid border-2 border-black text-gray-800']"    
+                        :class="['lg:bg-transparent lg:text-white lg:border-0 inline-flex cursor-pointer rounded-full px-4 py-2 m-1', vacanciesStore.selectedJobTypes.includes(job) ? 'bg-[#FFE70C] border-solid border-2 border-black text-black' : 'bg-white hover:bg-gray-200 lg:hover:bg-transparent border-solid border-2 border-black text-gray-800']"    
                     >
-                        <input type="radio" :value="job" class="hidden" v-model="vacanciesStore.selectedJobTypes" />
+                        <input type="checkbox" :value="job" class="hidden md:block mr-2" v-model="vacanciesStore.selectedJobTypes" />
                         {{ job }}
                     </label>
                 </div>
@@ -51,9 +49,9 @@ const toggleSidebar = () => {
                     <label 
                         v-for="jobSchedule in schedule"
                         :key="jobSchedule"
-                        :class="['inline-block cursor-pointer rounded-full px-4 py-2 m-1', vacanciesStore.selectedSchedules.includes(jobSchedule) ? 'bg-[#FFE70C] border-solid border-2 border-black text-black' : 'bg-white hover:bg-gray-200 border-solid border-2 border-black text-gray-800']"
+                        :class="['lg:bg-transparent lg:text-white lg:border-0 inline-flex cursor-pointer rounded-full px-4 py-2 m-1', vacanciesStore.selectedSchedules.includes(jobSchedule) ? 'bg-[#FFE70C] border-solid border-2 border-black text-black' : 'bg-white hover:bg-gray-200 lg:hover:bg-transparent border-solid border-2 border-black text-gray-800']"
                     >
-                        <input type="radio" :value="jobSchedule" class="hidden" v-model="vacanciesStore.selectedSchedules" />
+                        <input type="checkbox" :value="jobSchedule" class="hidden md:block mr-2" v-model="vacanciesStore.selectedSchedules" />
                         {{ jobSchedule }}
                     </label>
                 </div>
@@ -64,14 +62,14 @@ const toggleSidebar = () => {
                     <label 
                         v-for="exp in experience"
                         :key="exp"
-                        :class="['inline-block cursor-pointer rounded-full px-4 py-2 m-1', vacanciesStore.selectedExperience === exp ? 'bg-[#FFE70C] border-solid border-2 border-black text-black' : 'bg-white hover:bg-gray-200 border-solid border-2 border-black text-gray-800']"
+                        :class="['lg:bg-transparent lg:text-white lg:border-0 inline-flex cursor-pointer rounded-full px-4 py-2 m-1', vacanciesStore.selectedExperience === exp ? 'bg-[#FFE70C] border-solid border-2 border-black text-black' : 'bg-white hover:bg-gray-200 lg:hover:bg-transparent border-solid border-2 border-black text-gray-800']"
                     >
-                        <input type="radio" name="remote" :value="exp" class="hidden" v-model="vacanciesStore.selectedExperience" />
+                        <input type="checkbox" name="remote" :value="exp" class="hidden md:block mr-2" v-model="vacanciesStore.selectedExperience" />
                         {{ exp }}
                     </label>
                 </div>
             </div>
-            <button @click="vacanciesStore.searchByProps" class="mb-4 text-center w-fit h-fit p-4 bg-black shadow-yellow-sharp hover:shadow-yellow-sharp-hover transition-shadow duration-300">Применить</button>
+            <button @click="vacanciesStore.searchByProps" class="mb-4 text-center w-fit h-fit p-4 bg-black shadow-filter-button hover:shadow-filter-button-hover transition-shadow duration-300">Применить</button>
         </div>
     </div>
 </template>

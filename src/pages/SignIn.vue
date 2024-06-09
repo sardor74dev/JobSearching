@@ -1,17 +1,10 @@
 <script setup>
-import { ref } from 'vue'
 import Button from '../components/Button.vue';
 import { useRegistrationStore } from '../stores/RegistrationStore'
 
 const registrationStore = useRegistrationStore()
 
-// const handleSubmitSignIn = () => {
-//     const signedUser = ref({
-//         email: registrationStore.email,
-//         password: registrationStore.password
-//     })
-//     registrationStore.auth(signedUser)
-// }
+const errorMessage = registrationStore.errorMessage
 
 </script>
 
@@ -48,7 +41,6 @@ const registrationStore = useRegistrationStore()
                         </div>
                     </div>
                     <div class="mt-2">
-                        <!-- <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" /> -->
                         <input 
                             id="password"
                             name="password"
@@ -63,18 +55,24 @@ const registrationStore = useRegistrationStore()
                 </div>
 
                 <div>
-                    <!-- <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button> -->
                     <button type="submit" class="text-center w-full h-fit p-4 bg-black shadow-yellow-sharp hover:shadow-yellow-sharp-hover transition-shadow duration-300">
                         <p class="font-montserrat font-semibold text-base md:text-xl">Войти</p>
                     </button>
                 </div>
             </form>
 
-            <p class="mt-10 text-center text-sm text-white">
-                Нет аккаута?
-                {{ ' ' }}
-                <router-link to="/registration" class="font-semibold leading-6 text-[#FFE70C] hover:text-yellow-300">Зарегистрируйся</router-link>
-            </p>
+            <div v-if="errorMessage" class="mt-4 text-red-500">
+                {{ errorMessage }}
+            </div>
+
+            <div class="flex justify-between items-center">
+                <p class="mt-10 text-center text-sm text-white">
+                    Нет аккаута?
+                    {{ ' ' }}
+                    <router-link to="/registration" class="font-semibold leading-6 text-[#FFE70C] hover:text-yellow-300">Зарегистрируйся</router-link>
+                </p>
+                <p @click="registrationStore.logOut" class="mt-10 font-semibold leading-6 text-[#FFE70C] hover:text-yellow-300 cursor-pointer">Выйти</p>
+            </div>
         </div>
     </div>
 </template>
