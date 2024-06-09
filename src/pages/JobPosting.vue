@@ -96,7 +96,9 @@ const payment = ref('')
                 </div>
             </div>
             <div class="mt-6 flex items-center justify-end gap-x-6">
-                <button type="submit" @click="vacanciesStore.postVacancies(title, company, location, jobType, schedule, experience, payment)" class="px-4 py-2 bg-yellow-500 text-black rounded-md shadow-sm">Post Job</button>
+                <button type="submit" @click="vacanciesStore.postVacancies(title, company, location, jobType, schedule, experience, payment)" class="text-center w-[50vw] lg:w-[250px] h-12 md:h-[60px] h-[46px] p-2 bg-black shadow-yellow-sharp hover:shadow-yellow-sharp-hover transition-shadow duration-300">
+                    <p class="font-montserrat font-semibold text-base md:text-xl">Post</p>
+                </button>
             </div>
         </form>
     </div>
